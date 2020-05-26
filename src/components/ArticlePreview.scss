@@ -1,0 +1,57 @@
+@import '../vars';
+.articlePreview {
+  position: relative;
+}
+.imageContainer {
+  position: absolute;
+  z-index: 1;
+}
+.title{
+  position: absolute;
+  left: 480px;
+  top: 330px;
+  width: 400px;
+  font-weight: 700;
+  font-size: 24px;
+}
+.date {
+  position: absolute;
+  font-weight: 300;
+  font-style: italic;
+  left: 480px;
+  top: 360px;
+  width: 400px;
+  font-size: 16px;
+}
+
+.excerptContainer {
+  position: absolute;
+  z-index: 1;
+  background-color: $black;
+  color: $white;
+  width: 600px;
+  min-height: 100px;
+  top: 400px;
+  left: 300px;
+  font-size: 16px;
+  padding: 20px;
+
+  a {
+
+    float: right;
+    color: $white;
+    font-weight: 700;
+    transition: all .3s ease;
+    text-decoration: none;
+    &:hover {
+      color: $cherry-red;
+    }
+    &:after {
+      font-family: "Font Awesome 5 Free";
+      font-weight: 900;
+      content: "\f101";
+      padding-left: 10px;
+      clear: both;
+    }
+  }
+}
