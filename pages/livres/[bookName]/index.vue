@@ -37,11 +37,8 @@
       const chapterList: WPArticle[] = (chapters as WPArticle[]) || []
       const bookResult = chapterList.toSorted((a, b) => new Date(a.date) - new Date(b.date))
       
-      return  { chapters: bookResult, book: currentBook }
+      return  Promise.resolve({ chapters: bookResult, book: currentBook })
     })
-    if (error) {
-      throw new Error(error)
-    }
     const { chapters, book } = data._rawValue
     bookCategory.value = book
     bookCover.value = chapters[0]
