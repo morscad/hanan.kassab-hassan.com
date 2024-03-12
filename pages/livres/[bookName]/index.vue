@@ -39,6 +39,7 @@
       
       return  Promise.resolve({ chapters: bookResult, book: currentBook })
     })
+    console.log(data)
     const { chapters, book } = data._rawValue
     bookCategory.value = book
     bookCover.value = chapters[0]
