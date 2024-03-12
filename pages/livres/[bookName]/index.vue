@@ -40,7 +40,7 @@
       return  { chapters: bookResult, book: currentBook }
     })
 
-    const { chapters, book } = data
+    const { chapters, book } = data._rawValue
     bookCategory.value = book
     bookCover.value = chapters[0]
     bookChapters.value = chapters.slice(1)
