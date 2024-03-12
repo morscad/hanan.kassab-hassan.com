@@ -39,7 +39,9 @@
       
       return  { chapters: bookResult, book: currentBook }
     })
-
+    if (error) {
+      throw new Error(error)
+    }
     const { chapters, book } = data._rawValue
     bookCategory.value = book
     bookCover.value = chapters[0]
