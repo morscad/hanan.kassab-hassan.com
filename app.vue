@@ -21,7 +21,7 @@ body {
 .page-content {
   width: 100%;
   max-width: 960px;
-  margin: 0 auto;
+  padding: 0 20px;
 }
 
 .font-regular {
@@ -35,6 +35,12 @@ body {
   font-optical-sizing: auto;
   font-weight: 700;
   font-style: normal;
+}
+@media only screen  and (min-width : 768px) {
+  .page-content {
+    margin: 0 auto;
+    padding: 0;
+  }
 }
 </style>
 

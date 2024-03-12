@@ -33,6 +33,11 @@
   }
   .chapter-intro {
     font-size: 1.5em;
+    > p {
+      strong {
+        margin-top: 10px;
+      }
+    }
   }
   .chapter-return {
     padding: 20px 0 10px 0;

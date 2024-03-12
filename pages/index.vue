@@ -26,11 +26,13 @@
 
 .homepage-content-wrapper {
   display: flex;
+  flex-direction: column-reverse;
   padding-top: 30px;
 }
 
 .homepage-image {
-  width: 25%;
+  width: 100%;
+  margin: 0 auto;
   & img {
     width: 100%;
     height: auto;
@@ -38,12 +40,27 @@
 }
 
 .homepage-text {
-  width: 75%;
-  padding-right: 20px;
+  width: 100%;
   direction: rtl;
   font-size: 1.25em;
   > p {
     margin: 0;
+  }
+}
+
+@media only screen  and (min-width : 768px) {
+  .homepage-content-wrapper {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .homepage-image {
+    width: 25%;
+  }
+  .homepage-text {
+    width: 75%;
+    padding-right: 20px;
+    font-size: 1.25em;
   }
 }
 </style>
