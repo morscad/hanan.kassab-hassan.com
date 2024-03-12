@@ -8,7 +8,7 @@
       <div class="font-bold table-of-content-title">قائمة المحتويات</div>
       <ul>
         <li v-for="chapter in bookChapters" class="font-regular">
-          <a :href="`/livres/${bookCategory.slug}/${chapter.slug}`">{{ chapter.title.rendered }}</a>
+          <a :href="`/livres/${bookName}/${chapter.slug}`">{{ chapter.title.rendered }}</a>
         </li>
       </ul>
     </div>
@@ -20,30 +20,20 @@
 
   const { apiBasePath } = useRuntimeConfig();
   const { params: { bookName }} = useRoute()
+  const [ ,categoryID ] =  bookName.split('---')
   const bookCategory = ref()
   const bookCover = ref()
   const bookChapters = ref([])
 
   try {
     
-    const { data, error} = await useAsyncData(`book-category-${bookName}`, async () => {
-      const categoryData = await $fetch(`${apiBasePath}/categories`); 
-      const categoryList = categoryData as WPCategory[];
+    const { data, error} = await useAsyncData(`book-category-${bookName}`, () =>  $fetch(`${apiBasePath}/posts?categories=${categoryID}`));
+    const chapterList: WPArticle[] = (data._rawValue as WPArticleData[]) || []
+    const bookResult = chapterList.toSorted((a, b) => new Date(a.date) - new Date(b.date))
       
-      const currentBook = categoryList.filter((book: WPCategory) => book.slug === bookName)[0]
-      const categoryID = currentBook.id
-      
-      const chapters = await $fetch(`${apiBasePath}/posts?categories=${categoryID}`);
-      const chapterList: WPArticle[] = (chapters as WPArticle[]) || []
-      const bookResult = chapterList.toSorted((a, b) => new Date(a.date) - new Date(b.date))
-      
-      return  Promise.resolve({ chapters: bookResult, book: currentBook })
-    })
-    console.log(data)
-    const { chapters, book } = data._rawValue
-    bookCategory.value = book
-    bookCover.value = chapters[0]
-    bookChapters.value = chapters.slice(1)
+    bookCategory.value = categoryID
+    bookCover.value = bookResult[0]
+    bookChapters.value = bookResult.slice(1)
   }
   catch (e) {
     console.error(e)

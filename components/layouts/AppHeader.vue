@@ -15,7 +15,7 @@
                     class="font-regular"
                   >
                     <v-list-item-title>
-                      <a :href="`/livres/${book.slug}`">{{ book.description }}</a>
+                      <a :href="`/livres/${book.slug}---${book.id}`">{{ book.description }}</a>
                     </v-list-item-title>
                 </v-list-item>
             </v-list-item>
@@ -38,7 +38,7 @@
                   class="font-regular"
                 >
                   <v-list-item-title>
-                    <a :href="`/livres/${book.slug}`">{{ book.description }}</a>
+                    <a :href="`/livres/${book.slug}---${book.id}`">{{ book.description }}</a>
                   </v-list-item-title>
               </v-list-item>
             </v-list>
