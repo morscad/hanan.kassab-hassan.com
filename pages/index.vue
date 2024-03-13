@@ -13,6 +13,7 @@
 </template>
 <script setup lang="ts">
   import { ref } from 'vue'
+import type { WPPage } from '~/types';
 
   const pageContent = ref('') 
   const pageSummary = ref('') 
@@ -20,7 +21,7 @@
   const { apiBasePath } = useRuntimeConfig();
   const { data, error } = await useAsyncData(() => $fetch(`${apiBasePath}/posts?categories=6`)) 
   try {
-    const homePage: WPPage = ((data as WPPageData)._rawValue as WPPage[]).filter((p: WPPage) => p.title.rendered === 'home')[0]
+    const homePage: WPPage = (data.value as WPPage[]).filter((p: WPPage) => p.title.rendered === 'home')[0]
     pageContent.value = homePage.content.rendered
     pageSummary.value = homePage.excerpt.rendered.replace('<p>', '').replace('</p>', '')
   }
