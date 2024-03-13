@@ -20,7 +20,6 @@
     const { data, error } = await useAsyncData(() => $fetch(`${apiBasePath}/posts?slug=${chapterName}`)) 
     const chapterData: WPArticle = (data.value as WPArticle[])[0] || null
     chapter.value = chapterData
-    console.log(chapter.value)
   }
   catch (e) {
     console.error(e)

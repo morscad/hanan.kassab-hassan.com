@@ -29,7 +29,7 @@
     
     const { data, error} = await useAsyncData(`book-category-${bookName}`, () =>  $fetch(`${apiBasePath}/posts?categories=${categoryID}`));
     const chapterList: WPArticle[] = data.value as WPArticle[] || []
-    const bookResult = chapterList.toSorted((a: WPArticle, b: WPArticle) => new Date(a.date) >= new Date(b.date) ? 1 : -1)
+    const bookResult = chapterList.toSorted((a: WPArticle, b: WPArticle) => { return new Date(a.date) >= new Date(b.date) ? 1 : -1 })
     bookCategory.value = categoryID
     bookCover.value = bookResult[0]
     bookChapters.value = bookResult.slice(1)
