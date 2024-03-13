@@ -15,22 +15,21 @@
   </div>
 </template>
 <script setup lang="ts">
-  import { ref, watch } from 'vue'
-  import type { WPCategory, WPArticle, WPArticleData } from '../../types'
+  import { ref } from 'vue'
+  import type { WPArticle } from '~/types'
 
   const { apiBasePath } = useRuntimeConfig();
-  const { params: { bookName }} = useRoute()
-  const [ ,categoryID ] =  bookName.split('---')
+  const { fullPath, params: { bookName }} = useRoute()
+  const [ ,categoryID ] =  (bookName as string).split('---')
   const bookCategory = ref()
   const bookCover = ref()
-  const bookChapters = ref([])
+  const bookChapters = ref<WPArticle[]>([])
 
   try {
     
     const { data, error} = await useAsyncData(`book-category-${bookName}`, () =>  $fetch(`${apiBasePath}/posts?categories=${categoryID}`));
-    const chapterList: WPArticle[] = (data._rawValue as WPArticleData[]) || []
-    const bookResult = chapterList.toSorted((a, b) => new Date(a.date) - new Date(b.date))
-      
+    const chapterList: WPArticle[] = data.value as WPArticle[] || []
+    const bookResult = chapterList.toSorted((a: WPArticle, b: WPArticle) => new Date(a.date) >= new Date(b.date) ? 1 : -1)
     bookCategory.value = categoryID
     bookCover.value = bookResult[0]
     bookChapters.value = bookResult.slice(1)
@@ -38,6 +37,24 @@
   catch (e) {
     console.error(e)
   }
+  useHead({
+    meta: [
+      { name: 'title', content: `Hanan Kassab Hassan - حنان قصاب حسن | ${(bookCover.value.title.rendered)}` },
+      { name: 'description', content: bookCover.value.excerpt.rendered.replace('<p>', '').replace('</p>', '') },
+      { name: 'og:title', content: `Hanan Kassab Hassan - حنان قصاب حسن | ${(bookCover.value.title.rendered)}` },
+      { name: 'og:description', content: bookCover.value.excerpt.rendered.replace('<p>', '').replace('</p>', '') },
+      { name: 'og:type', content: 'book' },
+      { name: 'og:book:author', content: ['Hanan Kassab Hassan - حنان قصاب حسن'] },
+      { name: 'og:book:release_date', content: new Date('March 8, 2024 09:00:00').toISOString() },
+      { name: 'og:image', content: 'https://hanan.kassab-hassan.com/images/hanan-and-sharif.jpg' },
+      { name: 'og:url', content: `https://hanan.kassab-hassan.com${fullPath}` },
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:title', content: `Hanan Kassab Hassan - حنان قصاب حسن | ${(bookCover.value.title.rendered)}` },
+      { name: 'twitter:description', content: bookCover.value.excerpt.rendered.replace('<p>', '').replace('</p>', '') },
+      { name: 'twitter:image', content: 'https://hanan.kassab-hassan.com/images/hanan-and-sharif.jpg' },
+      { name: 'twitter:url', content: `https://hanan.kassab-hassan.com${fullPath}` },
+    ]
+  })
 
 </script>
 <style lang="scss">
