@@ -51,16 +51,19 @@
 
 <script setup lang="ts">
   import { ref } from 'vue'
+  import type { WPCategory } from '~/types';
   const books = ref()
   const drawer = ref(false)
 
   const { apiBasePath } = useRuntimeConfig();
   const { data, error } = await useAsyncData(() => $fetch(`${apiBasePath}/categories`)) 
   try{
-    const categoryList = (data as WPCategoriesData)._rawValue as WPCategory[]
-    const booksCategory = categoryList.filter((cat: WPCategory) => cat.slug === 'livres')[0]
-    const bookList = categoryList.filter((cat: WPCategory) => cat.parent === booksCategory.id )
-    books.value = bookList
+    if (data && data.value) {
+      const categoryList = data.value as WPCategory[]
+      const booksCategory = categoryList.filter((cat: WPCategory) => cat.slug === 'livres')[0]
+      const bookList = categoryList.filter((cat: WPCategory) => cat.parent === booksCategory.id )
+      books.value = bookList
+    }
   }
   catch (e) {
     console.error(e)
@@ -100,7 +103,6 @@
   }
   .header-menu {
     width: 45%;
-    display: flex;
     justify-content: flex-end;
     font-size: 1.5em;
     display: none;

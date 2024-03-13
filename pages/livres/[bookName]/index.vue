@@ -28,34 +28,36 @@
   try {
     
     const { data, error} = await useAsyncData(`book-category-${bookName}`, () =>  $fetch(`${apiBasePath}/posts?categories=${categoryID}`));
-    console.log(data.value)
-    const chapterList: WPArticle[] = data.value as WPArticle[] || []
-    const bookResult = chapterList.toSorted((a: WPArticle, b: WPArticle) => { return new Date(a.date) >= new Date(b.date) ? 1 : -1 })
-    bookCategory.value = categoryID
-    bookCover.value = bookResult[0]
-    bookChapters.value = bookResult.slice(1)
+    if (data && data.value) {
+      const chapterList: WPArticle[] = data.value as WPArticle[] || []
+      const bookResult = chapterList.toSorted((a: WPArticle, b: WPArticle) => { return new Date(a.date) >= new Date(b.date) ? 1 : -1 })
+      bookCategory.value = categoryID
+      bookCover.value = bookResult[0]
+      bookChapters.value = bookResult.slice(1)
+
+      useHead({
+        meta: [
+          { name: 'title', content: `Hanan Kassab Hassan - حنان قصاب حسن | ${(bookCover.value.title.rendered)}` },
+          { name: 'description', content: bookCover.value.excerpt.rendered.replace('<p>', '').replace('</p>', '') },
+          { name: 'og:title', content: `Hanan Kassab Hassan - حنان قصاب حسن | ${(bookCover.value.title.rendered)}` },
+          { name: 'og:description', content: bookCover.value.excerpt.rendered.replace('<p>', '').replace('</p>', '') },
+          { name: 'og:type', content: 'book' },
+          { name: 'og:book:author', content: ['Hanan Kassab Hassan - حنان قصاب حسن'] },
+          { name: 'og:book:release_date', content: new Date('March 8, 2024 09:00:00').toISOString() },
+          { name: 'og:image', content: 'https://hanan.kassab-hassan.com/images/hanan-and-sharif.jpg' },
+          { name: 'og:url', content: `https://hanan.kassab-hassan.com${fullPath}` },
+          { name: 'twitter:card', content: 'summary_large_image' },
+          { name: 'twitter:title', content: `Hanan Kassab Hassan - حنان قصاب حسن | ${(bookCover.value.title.rendered)}` },
+          { name: 'twitter:description', content: bookCover.value.excerpt.rendered.replace('<p>', '').replace('</p>', '') },
+          { name: 'twitter:image', content: 'https://hanan.kassab-hassan.com/images/hanan-and-sharif.jpg' },
+          { name: 'twitter:url', content: `https://hanan.kassab-hassan.com${fullPath}` },
+        ]
+      })
+    }
   }
   catch (e) {
     console.error(e)
   }
-  useHead({
-    meta: [
-      { name: 'title', content: `Hanan Kassab Hassan - حنان قصاب حسن | ${(bookCover.value.title.rendered)}` },
-      { name: 'description', content: bookCover.value.excerpt.rendered.replace('<p>', '').replace('</p>', '') },
-      { name: 'og:title', content: `Hanan Kassab Hassan - حنان قصاب حسن | ${(bookCover.value.title.rendered)}` },
-      { name: 'og:description', content: bookCover.value.excerpt.rendered.replace('<p>', '').replace('</p>', '') },
-      { name: 'og:type', content: 'book' },
-      { name: 'og:book:author', content: ['Hanan Kassab Hassan - حنان قصاب حسن'] },
-      { name: 'og:book:release_date', content: new Date('March 8, 2024 09:00:00').toISOString() },
-      { name: 'og:image', content: 'https://hanan.kassab-hassan.com/images/hanan-and-sharif.jpg' },
-      { name: 'og:url', content: `https://hanan.kassab-hassan.com${fullPath}` },
-      { name: 'twitter:card', content: 'summary_large_image' },
-      { name: 'twitter:title', content: `Hanan Kassab Hassan - حنان قصاب حسن | ${(bookCover.value.title.rendered)}` },
-      { name: 'twitter:description', content: bookCover.value.excerpt.rendered.replace('<p>', '').replace('</p>', '') },
-      { name: 'twitter:image', content: 'https://hanan.kassab-hassan.com/images/hanan-and-sharif.jpg' },
-      { name: 'twitter:url', content: `https://hanan.kassab-hassan.com${fullPath}` },
-    ]
-  })
 
 </script>
 <style lang="scss">
