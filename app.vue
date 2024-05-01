@@ -11,6 +11,22 @@
 </script>
 
 <style>
+@font-face {
+    font-family: 'Lotus Linotype Light';
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: url('/fonts/LotusLight.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Lotus Linotype Bold';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('/fonts/LotusBold.otf') format('opentype');
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -25,13 +41,13 @@ body {
 }
 
 .font-regular {
-  font-family: "Noto Naskh Arabic", serif;
+  font-family: "Lotus Linotype Light";
   font-optical-sizing: auto;
-  font-weight: 400;
+  font-weight: 300;
   font-style: normal;
 }
 .font-bold {
-  font-family: "Noto Naskh Arabic", serif;
+  font-family: "Lotus Linotype Bold";
   font-optical-sizing: auto;
   font-weight: 700;
   font-style: normal;
