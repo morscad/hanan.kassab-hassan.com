@@ -27,8 +27,8 @@
         <a href="/">  حنان قصاب حسن<br />Hanan Kassab Hassan</a>
       </div>
       <div class="header-menu font-regular">
-        <v-btn class="font-bold" variant="plain">
-          Books
+        <v-btn class="font-bold" variant="plain" size="x-large">
+          مؤلفات
           <v-menu activator="parent">
             <v-list>
               <v-list-item

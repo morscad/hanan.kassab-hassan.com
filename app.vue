@@ -52,7 +52,7 @@ body {
   font-weight: 700;
   font-style: normal;
 }
-@media only screen  and (min-width : 768px) {
+@media only screen  and (min-width : 960px) {
   .page-content {
     margin: 0 auto;
     padding: 0;

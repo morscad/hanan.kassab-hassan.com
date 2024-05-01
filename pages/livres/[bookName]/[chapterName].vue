@@ -4,7 +4,7 @@
     <div v-if="chapter">
       <div class="chapter-return"><a :href="`/livres/${bookName}`">عودة الى قائمة المحتويات &raquo;</a></div>
       <h1 class="font-bold chapter-title">{{ chapter.title.rendered }}</h1>
-      <div class="font-regular chapter-intro" v-html="chapter.content.rendered" />
+      <div class="chapter-intro" v-html="chapter.content.rendered" />
       <div class="chapter-return"><a :href="`/livres/${bookName}`">عودة الى قائمة المحتويات &raquo;</a></div>
     </div>
   </div>
@@ -57,21 +57,31 @@
     font-size: 1.5em;
     p {
       margin-bottom: 1.5em;
-      float: left;
-      width: calc(100% - 360px);
-    }
-    figure {
-      float: right;
-      width: 360px;
 
-      img {
-        width: 100%;
+      font-family: "Lotus Linotype Light";
+      font-optical-sizing: auto;
+      font-weight: 300;
+      font-style: normal;
+
+      strong {
+        font-family: "Lotus Linotype Bold";
+        font-weight: 700;
       }
     }
-
-  }
-  .chapter-intro::after {
-    clear: both;
+    .wp-element-caption {
+      font-size: 0.75em;
+      font-style: italic;
+    }
+    .wp-block-image {
+      text-align: center;
+      marin: 20px 0;
+      img {
+        width: 90%;
+        max-width: 768px;
+        height: auto;
+        margin-right: auto;
+      }
+    }
   }
   .chapter-return {
     padding: 20px 0 10px 0;
