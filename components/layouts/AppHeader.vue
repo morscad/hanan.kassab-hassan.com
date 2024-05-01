@@ -6,7 +6,7 @@
         <v-navigation-drawer v-model="drawer" temporary class="header-menu-mobile-drawer">
           <v-list nav>
             <v-list-item class="font-regular">
-                <v-list-item-title>Books</v-list-item-title>
+                <v-list-item-title>مؤلفات</v-list-item-title>
                 <v-divider />
                 <v-list-item
                   v-for="(book, index) in books"
