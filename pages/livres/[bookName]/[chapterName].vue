@@ -46,20 +46,32 @@
     console.error(e)
   }
 </script>
-<style scoped lang="scss">
+<style lang="scss">
 .chapter {
   direction: rtl;
-  
+
   .chapter-title {
     font-size: 3em;
   }
   .chapter-intro {
     font-size: 1.5em;
-    > p {
-      strong {
-        margin-top: 10px;
+    p {
+      margin-bottom: 1.5em;
+      float: left;
+      width: calc(100% - 360px);
+    }
+    figure {
+      float: right;
+      width: 360px;
+
+      img {
+        width: 100%;
       }
     }
+
+  }
+  .chapter-intro::after {
+    clear: both;
   }
   .chapter-return {
     padding: 20px 0 10px 0;
@@ -74,4 +86,5 @@
     }
   }
 }
+
 </style>
