@@ -52,6 +52,22 @@ body {
   font-weight: 700;
   font-style: normal;
 }
+
+.wp-element-caption {
+  font-size: 0.75em;
+  font-style: italic;
+}
+.wp-block-image {
+  text-align: center;
+  margin: 20px 0;
+  img {
+    width: 90%;
+    max-width: 768px;
+    height: auto;
+    margin-right: auto;
+  }
+}
+
 @media only screen  and (min-width : 960px) {
   .page-content {
     margin: 0 auto;

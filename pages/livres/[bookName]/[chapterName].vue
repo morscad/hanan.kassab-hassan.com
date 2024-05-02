@@ -68,20 +68,6 @@
         font-weight: 700;
       }
     }
-    .wp-element-caption {
-      font-size: 0.75em;
-      font-style: italic;
-    }
-    .wp-block-image {
-      text-align: center;
-      marin: 20px 0;
-      img {
-        width: 90%;
-        max-width: 768px;
-        height: auto;
-        margin-right: auto;
-      }
-    }
   }
   .chapter-return {
     padding: 20px 0 10px 0;
