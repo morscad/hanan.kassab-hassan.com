@@ -35,6 +35,7 @@
       bookChapters.value = bookResult.slice(1)
 
       useHead({
+        title: `Hanan Kassab Hassan - حنان قصاب حسن | ${(bookCover.value.title.rendered)}`,
         meta: [
           { name: 'title', content: `Hanan Kassab Hassan - حنان قصاب حسن | ${(bookCover.value.title.rendered)}` },
           { name: 'description', content: bookCover.value.excerpt.rendered.replace('<p>', '').replace('</p>', '') },

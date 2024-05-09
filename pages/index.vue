@@ -27,6 +27,7 @@ import type { WPPage } from '~/types';
       pageSummary.value = homePage.excerpt.rendered.replace('<p>', '').replace('</p>', '')
 
       useHead({
+        title: 'Hanan Kassab Hassan - حنان قصاب حسن',
         meta: [
           { name: 'title', content: 'Hanan Kassab Hassan - حنان قصاب حسن' },
           { name: 'description', content: pageSummary.value },

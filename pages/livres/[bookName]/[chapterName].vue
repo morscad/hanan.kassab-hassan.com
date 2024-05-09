@@ -23,6 +23,7 @@
       chapter.value = chapterData
 
       useHead({
+        title: `Hanan Kassab Hassan - حنان قصاب حسن | ${(chapter.value.title.rendered)}`,
         meta: [
           { name: 'title', content: `Hanan Kassab Hassan - حنان قصاب حسن | ${(chapter.value.title.rendered)}` },
           { name: 'description', content: chapter.value.excerpt.rendered.replace('<p>', '').replace('</p>', '') },
