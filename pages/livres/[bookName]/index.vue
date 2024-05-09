@@ -25,9 +25,8 @@
   const bookCover = ref()
   const bookChapters = ref<WPArticle[]>([])
 
+  const { data, error} = await useAsyncData(`book-category-${bookName}`, () =>  $fetch(`${apiBasePath}/posts?categories=${categoryID}`));
   try {
-    
-    const { data, error} = await useAsyncData(`book-category-${bookName}`, () =>  $fetch(`${apiBasePath}/posts?categories=${categoryID}`));
     if (data && data.value) {
       const chapterList: WPArticle[] = data.value as WPArticle[] || []
       const bookResult = chapterList.toSorted((a: WPArticle, b: WPArticle) => { return new Date(a.date) >= new Date(b.date) ? 1 : -1 })
