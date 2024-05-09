@@ -35,17 +35,17 @@
       bookChapters.value = bookResult.slice(1)
 
       useHead({
-        title: `Hanan Kassab Hassan - حنان قصاب حسن | ${(bookCover.value.title.rendered)}`,
+        title: `Hanan Kassab Hassan - حنان قصاب حسن | ${bookCover.value.title.rendered}`,
         meta: [
-          { name: 'title', content: `Hanan Kassab Hassan - حنان قصاب حسن | ${(bookCover.value.title.rendered)}` },
+          { name: 'title', content: `Hanan Kassab Hassan - حنان قصاب حسن | ${bookCover.value.title.rendered}` },
           { name: 'description', content: bookCover.value.excerpt.rendered.replace('<p>', '').replace('</p>', '') },
-          { name: 'og:title', content: `Hanan Kassab Hassan - حنان قصاب حسن | ${(bookCover.value.title.rendered)}` },
+          { name: 'og:title', content: `Hanan Kassab Hassan - حنان قصاب حسن | ${bookCover.value.title.rendered}` },
           { name: 'og:description', content: bookCover.value.excerpt.rendered.replace('<p>', '').replace('</p>', '').replace('\n', '') },
           { name: 'og:type', content: 'website' },
           { name: 'og:image', content: 'https://hanan.kassab-hassan.com/images/books/hanan-and-sharif.jpg' },
           { name: 'og:url', content: `https://hanan.kassab-hassan.com${fullPath}` },
           { name: 'twitter:card', content: 'summary_large_image' },
-          { name: 'twitter:title', content: `Hanan Kassab Hassan - حنان قصاب حسن | ${(bookCover.value.title.rendered)}` },
+          { name: 'twitter:title', content: `Hanan Kassab Hassan - حنان قصاب حسن | ${bookCover.value.title.rendered}` },
           { name: 'twitter:description', content: bookCover.value.excerpt.rendered.replace('<p>', '').replace('</p>', '').replace('\n', '') },
           { name: 'twitter:image', content: 'https://hanan.kassab-hassan.com/images/books/hanan-and-sharif.jpg' },
           { name: 'twitter:url', content: `https://hanan.kassab-hassan.com${fullPath}` },
