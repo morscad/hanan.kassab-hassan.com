@@ -38,7 +38,7 @@
         title: `Hanan Kassab Hassan - حنان قصاب حسن | ${bookCover.value.title.rendered}`,
         meta: [
           { name: 'title', content: `Hanan Kassab Hassan - حنان قصاب حسن | ${bookCover.value.title.rendered}` },
-          { name: 'description', content: bookCover.value.excerpt.rendered.replace('<p>', '').replace('</p>', '') },
+          { name: 'description', content: bookCover.value.excerpt.rendered.replace('<p>', '').replace('</p>', '').replace('\n', '') },
           { name: 'og:title', content: `Hanan Kassab Hassan - حنان قصاب حسن | ${bookCover.value.title.rendered}` },
           { name: 'og:description', content: bookCover.value.excerpt.rendered.replace('<p>', '').replace('</p>', '').replace('\n', '') },
           { name: 'og:type', content: 'website' },
