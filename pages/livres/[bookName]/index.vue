@@ -25,7 +25,7 @@
   const bookCover = ref()
   const bookChapters = ref<WPArticle[]>([])
 
-  const { data, error} = await useAsyncData(`book-category-${bookName}`, () =>  $fetch(`${apiBasePath}/posts?categories=${categoryID}`));
+  const { data, error} = await useAsyncData(() =>  $fetch(`${apiBasePath}/posts?categories=${categoryID}`));
   try {
     if (data && data.value) {
       const chapterList: WPArticle[] = data.value as WPArticle[] || []
