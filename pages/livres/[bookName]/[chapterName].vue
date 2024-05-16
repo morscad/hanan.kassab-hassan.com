@@ -3,7 +3,7 @@
   <div class="page-content chapter">
     <div v-if="chapter">
       <div class="chapter-return"><a :href="`/livres/${bookName}`">عودة الى قائمة المحتويات &raquo;</a></div>
-      <h1 class="font-bold chapter-title">{{ chapter.title.rendered }}</h1>
+      <h1 class="font-bold chapter-title">{{ chapter.title.rendered.replace('#8211;' , '-').replace('&', '') }}</h1>
       <div class="chapter-intro" v-html="chapter.content.rendered" />
       <div class="chapter-return"><a :href="`/livres/${bookName}`">عودة الى قائمة المحتويات &raquo;</a></div>
     </div>
