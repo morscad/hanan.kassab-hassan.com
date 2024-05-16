@@ -8,7 +8,7 @@
       <div class="font-bold table-of-content-title">قائمة المحتويات</div>
       <ul>
         <li v-for="chapter in bookChapters" class="font-regular">
-          <a :href="`/livres/${bookName}/${chapter.slug}`">{{ chapter.title.rendered }}</a>
+          <a :href="`/livres/${bookName}/${chapter.slug}`"> {{ chapter.title.rendered.replace('#8211;' , '-').replace('&', '') }}</a>
         </li>
       </ul>
     </div>
@@ -25,7 +25,7 @@
   const bookCover = ref()
   const bookChapters = ref<WPArticle[]>([])
 
-  const { data, error} = await useAsyncData(() =>  $fetch(`${apiBasePath}/posts?categories=${categoryID}`));
+  const { data, error} = await useAsyncData(() =>  $fetch(`${apiBasePath}/posts?categories=${categoryID}&per_page=100`));
   try {
     if (data && data.value) {
       const chapterList: WPArticle[] = data.value as WPArticle[] || []
@@ -78,7 +78,8 @@ h3 {
   }
 }
 .table-of-content {
-  margin: 30px 0 ;
+  direction: rtl;
+  margin: 30px 20px ;
   a {
     text-decoration: none;
     color: #003366;
@@ -102,9 +103,11 @@ h3 {
     flex-direction: row;
   }
   .table-of-content {
-    margin: 50px 0 0 80px;
+    width: 260px;
+    margin: 50px 20px 0 20px;
   }
   .book-intro-wrapper {
+    width: calc(100% - 260px);
     .book-title {
       padding: 0 20px;
     }
